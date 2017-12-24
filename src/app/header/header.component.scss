@@ -1,0 +1,35 @@
+@import '../scss/utility';
+@import '../scss/colors';
+
+nav {
+    margin-top: 5em;
+
+    ul {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        margin-left: auto; margin-right: auto;
+        
+        li {
+            margin-right: 3em;
+
+            $menuItemColor: $gray;
+            a, a:hover {
+                position: relative;
+                text-decoration: none;
+                color: $menuItemColor;
+                font-size: 1.3em;
+            }
+
+            a {
+                @include animatedunderline($menuItemColor);
+            }
+        }
+    }
+
+    .logo {
+        display: block;
+        margin-left: auto; margin-right: auto;
+        width: 430px;
+    }
+} 
