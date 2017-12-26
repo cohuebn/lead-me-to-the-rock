@@ -6,5 +6,12 @@ import { Component } from '@angular/core'
     styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-    
+    menuVisible: boolean;
+
+    toggleMenu(menuVisible?: boolean) {
+        const toggleValue = typeof(menuVisible) === 'boolean'?
+            menuVisible :
+            !this.menuVisible;
+        this.menuVisible = toggleValue;
+    }
 }
