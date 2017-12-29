@@ -2,7 +2,7 @@
 @import '../scss/colors';
 
 nav {
-    margin-top: 5em;
+    margin-top: 5rem;
 
     $menuItemColor: $gray;
     ul {
@@ -10,19 +10,25 @@ nav {
         display: flex;
         justify-content: center;
         margin-left: auto; margin-right: auto;
+        font-size: 1.5rem;
+        font-weight: 300;
         
         li {
-            margin-right: 3em;
+            margin-right: 3rem;
 
             a, a:hover {
-                position: relative;
+                display: inline-block;
                 text-decoration: none;
                 color: $menuItemColor;
-                font-size: 1.3em;
+                font-size: 1.5rem;
             }
 
             a {
-                @include animatedunderline($menuItemColor);
+                @include transition(all .2s ease-in-out);
+            }
+
+            a:hover {
+                @include transform(scale(1.1));
             }
         }
     }
@@ -35,7 +41,7 @@ nav {
 
     i.material-icons {
         display: none;
-        font-size: 3em;
+        font-size: 3rem;
         cursor: pointer;
         margin-left: auto; margin-right: auto;
         text-align: center;
