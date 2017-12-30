@@ -9,11 +9,12 @@ import { HeaderComponent } from './header/header.component';
 import { routerNgProbeToken } from '@angular/router/src/router_module';
 import { AboutComponent } from './about/about.component';
 import { FaithComponent } from './faith/faith.component';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 @NgModule({
   declarations: [
     AppComponent, HeaderComponent, AboutComponent,
-    FaithComponent
+    FaithComponent, WelcomeComponent
   ],
   imports: [
     BrowserModule,
