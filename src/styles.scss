@@ -3,7 +3,7 @@
 
 /* You can add global styles to this file, and also import other style files */
 body {
-    font-family: 'Playfair Display', Helvetica, Arial, sans-serif;
+    font-family: 'News Cycle', Helvetica, Arial, sans-serif;
     padding: 0;
     margin: 0;
 }
@@ -22,9 +22,13 @@ main {
     h1 {
         flex: 0 0 100%;
         font-size: 2.5rem;
-        font-weight: 300;
+        font-weight: 400;
+        font-family: 'Amatic SC';
         color: $light-blue;
-        font-variant: small-caps;
+    }
+
+    h2 {
+        font-weight: 300;
     }
 
     section {
@@ -35,6 +39,7 @@ main {
     aside {
         flex: 2 1;
         margin-top: 1rem;
+        margin-right: -5rem;
     }
 }
 
@@ -47,6 +52,10 @@ main {
         }
 
         section {
+            margin-right: 0;
+        }
+
+        aside {
             margin-right: 0;
         }
     }
