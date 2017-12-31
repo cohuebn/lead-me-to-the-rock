@@ -11,8 +11,9 @@ nav {
         display: flex;
         justify-content: center;
         margin-left: auto; margin-right: auto;
-        font-size: 1.5rem;
+        font-size: 2rem;
         font-weight: 300;
+        font-family: 'Amatic SC';
         
         li {
             margin-right: 3rem;
@@ -21,7 +22,6 @@ nav {
                 display: inline-block;
                 text-decoration: none;
                 color: $menuItemColor;
-                font-size: 1.5rem;
             }
 
             a {
