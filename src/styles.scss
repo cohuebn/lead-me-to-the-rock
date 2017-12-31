@@ -10,7 +10,7 @@ body {
 
 .app-container {
     position: relative;
-    max-width: 70rem;
+    max-width: 78rem;
     margin-right: auto; margin-left: auto;
 }
 
@@ -39,7 +39,6 @@ main {
     aside {
         flex: 2 1;
         margin-top: 1rem;
-        margin-right: -5rem;
     }
 }
 
@@ -56,6 +55,7 @@ main {
         }
 
         aside {
+            order: -1;
             margin-right: 0;
         }
     }
