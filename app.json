@@ -1,0 +1,21 @@
+{
+  "name": "lead-me-to-the-rock",
+  "description": "lead me to the Rock blog site",
+  "scripts": {
+  },
+  "env": {
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "addons": [
+
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}
