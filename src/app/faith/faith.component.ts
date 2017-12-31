@@ -1,9 +1,8 @@
 import { Component } from '@angular/core'
 
 @Component({
-    selector: 'faith',
-    templateUrl: './faith.component.html',
-    styleUrls: ['./faith.component.scss']
+    selector: 'section[faith]',
+    templateUrl: './faith.component.html'
 })
 export class FaithComponent {
     
