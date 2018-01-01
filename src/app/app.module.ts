@@ -17,6 +17,7 @@ import { HomeComponent } from './home/home.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { PostService } from './posts/post.service';
 import { PostPreviewComponent } from './posts/post-preview.component';
+import { PostModelFactory } from './posts/post-model.factory';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,7 @@ import { PostPreviewComponent } from './posts/post-preview.component';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule
   ],
-  providers: [PostService],
+  providers: [PostService, PostModelFactory],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

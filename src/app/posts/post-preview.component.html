@@ -1,2 +1,8 @@
-<h2>{{post.title}}</h2>
-<p>{{post.content}}</p>
+<article>
+    <img class="post-image" [src]="post.imageUrl" />
+    <div class="post-content">
+        <h2>{{post.title}}</h2>
+        <p>{{post.content}}</p>
+        <a href="#">Read full post</a>
+    </div>
+</article>

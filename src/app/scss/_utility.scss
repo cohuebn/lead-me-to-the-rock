@@ -43,3 +43,7 @@
     -webkit-transform: $transforms;
     transform: $transforms;
 }
+
+@mixin shadow($color: #888) {
+    box-shadow: 1px 1px 3px $color;
+}
