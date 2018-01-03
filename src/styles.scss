@@ -31,7 +31,7 @@ main {
         font-weight: 300;
     }
 
-    section {
+    section, article {
         flex: 8;
         margin-right: 3rem;
     }
@@ -44,18 +44,17 @@ main {
 
 @media screen and (max-width: $mobile-max-width) {
     main {
-        flex-direction: column;
+        flex-direction: column-reverse;
 
         h1 {
             text-align: center;
         }
 
-        section {
+        section, article {
             margin-right: 0;
         }
 
         aside {
-            order: -1;
             margin-right: 0;
         }
     }

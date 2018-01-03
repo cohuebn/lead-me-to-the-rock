@@ -17,13 +17,14 @@ import { HomeComponent } from './home/home.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { PostService } from './posts/post.service';
 import { PostPreviewComponent } from './posts/post-preview.component';
+import { PostComponent } from './posts/post.component';
 import { PostModelFactory } from './posts/post-model.factory';
 
 @NgModule({
   declarations: [
     AppComponent, HeaderComponent, AboutComponent,
     FaithComponent, HomeComponent, WelcomeComponent,
-    PostPreviewComponent
+    PostPreviewComponent, PostComponent
   ],
   imports: [
     BrowserModule,
