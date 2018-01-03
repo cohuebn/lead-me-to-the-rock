@@ -16,9 +16,6 @@ export class PostModelFactory {
         
         const storageRef = this.fb.storage().ref().child(source.imageLocation);
         return storageRef.getDownloadURL()
-            .then(imageUrl => {
-                console.log(imageUrl);
-                return Object.assign(post, { imageUrl });
-            });
+            .then(imageUrl => (Object.assign(post, { imageUrl })));
     }
 }

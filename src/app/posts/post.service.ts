@@ -14,9 +14,19 @@ export class PostService {
 
     getPosts(query: PostQuery) {
         return this.db.list('/posts')
-            .valueChanges()
-            .flatMap(sourcePosts => {
-                return Promise.all(sourcePosts.map(x => this.postModelFactory.create(x)));
+            .snapshotChanges()
+            .flatMap(actions => {
+                const postPromises = actions.map(c => {
+                    const rawData = { key: c.payload.key, ...c.payload.val() };
+                    return this.postModelFactory.create(rawData);
+                });
+                return Promise.all(postPromises);
             });
+    }
+
+    getPost(key: string) {
+        return this.db.object(`/posts/${key}`)
+            .valueChanges()
+            .flatMap(x => this.postModelFactory.create(x));
     }
 }
