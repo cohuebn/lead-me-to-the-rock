@@ -1,6 +1,5 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Router } from '@angular/router';
 import { Post } from './post.model';
 import { PostService } from './post.service';
 import { Subscription } from 'rxjs/Subscription';
