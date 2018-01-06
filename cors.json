@@ -1,0 +1,8 @@
+[
+  {
+    "origin": ["http://lvh.me:4200", "https://lead-me-to-the-rock.herokuapp.com"],
+    "responseHeader": ["Content-Type"],
+    "method": ["GET"],
+    "maxAgeSeconds": 3600
+  }
+]

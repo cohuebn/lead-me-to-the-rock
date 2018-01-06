@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Post } from './post.model';
 import { PostService } from './post.service';
 import { Subscription } from 'rxjs/Subscription';
+import { Observable } from 'rxjs/Observable';
+import { FirebaseContentProvider } from '../content/firebase-content.provider';
 
 @Component({
     selector: 'article[post]',
@@ -11,22 +13,29 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class PostComponent implements OnInit, OnDestroy {
     post: Post;
+    postContents: Observable<string>;
     routeSubscription: Subscription;
     postSubscription: Subscription;
 
-    constructor(private postService: PostService, private route: ActivatedRoute) {
+    constructor(private postService: PostService, private route: ActivatedRoute, private contentProvider: FirebaseContentProvider) {
 
     }
 
     ngOnInit() {
         this.routeSubscription = this.route.params.subscribe(routeParams => {
             this.postSubscription = this.postService.getPost(routeParams.key)
-                .subscribe(post => this.post = post);
+                .subscribe(post => {
+                    this.post = post;
+
+                    this.postContents = this.contentProvider.getContents(post.contentUrl);
+                });
         });
     }
 
     ngOnDestroy() {
-        [this.routeSubscription, this.postSubscription].forEach(subscription => {
+        const subscriptions = [this.routeSubscription, this.postSubscription]
+        
+        subscriptions.forEach(subscription => {
             if (subscription) subscription.unsubscribe();
         });
     }
