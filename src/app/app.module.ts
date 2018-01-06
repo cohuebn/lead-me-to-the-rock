@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 import { environment } from '../environments/environment';
 import { AngularFireModule } from 'angularfire2';
@@ -19,21 +20,28 @@ import { PostService } from './posts/post.service';
 import { PostPreviewComponent } from './posts/post-preview.component';
 import { PostComponent } from './posts/post.component';
 import { PostModelFactory } from './posts/post-model.factory';
+import { FirebaseUrlProvider } from './content/firebase-url.provider';
+import { FirebaseContentProvider } from './content/firebase-content.provider';
+import { SafeHtmlPipe } from './content/safe-html.pipe';
 
 @NgModule({
   declarations: [
     AppComponent, HeaderComponent, AboutComponent,
     FaithComponent, HomeComponent, WelcomeComponent,
-    PostPreviewComponent, PostComponent
+    PostPreviewComponent, PostComponent, SafeHtmlPipe
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    HttpClientModule,
     RouterModule.forRoot(routes),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule
   ],
-  providers: [PostService, PostModelFactory],
+  providers: [
+    PostService, PostModelFactory, FirebaseUrlProvider,
+    FirebaseContentProvider
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

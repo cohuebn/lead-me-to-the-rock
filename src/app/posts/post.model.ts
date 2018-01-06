@@ -1,6 +1,7 @@
 export class Post {
     key: string;
     title: string;
-    content: string;
-    imageUrl?: string;
+    summary: string;
+    contentUrl: string;
+    thumbnailUrl?: string;
 }

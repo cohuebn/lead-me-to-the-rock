@@ -1,21 +1,21 @@
 import { Injectable } from '@angular/core';
-import { FirebaseApp } from 'angularfire2';
-import 'firebase/storage';
+import { FirebaseUrlProvider } from '../content/firebase-url.provider';
 import { Post } from './post.model';
 
 @Injectable()
 export class PostModelFactory {
-    constructor(private fb: FirebaseApp) {
-
+    constructor(private firebaseUrlProvider: FirebaseUrlProvider) {
     }
 
     create(source: any) : Promise<Post> {
         let post = Object.assign(new Post(), source);
-        if (!source.imageLocation)
-            return Promise.resolve(post);
         
-        const storageRef = this.fb.storage().ref().child(source.imageLocation);
-        return storageRef.getDownloadURL()
-            .then(imageUrl => (Object.assign(post, { imageUrl })));
+        return Promise.all([
+            this.firebaseUrlProvider.getUrl(source.thumbnailLocation),
+            this.firebaseUrlProvider.getUrl(source.contentLocation)
+        ])
+        .then(([thumbnailUrl, contentUrl]) => {
+            return Object.assign(post, { thumbnailUrl, contentUrl });
+        });
     }
 }
