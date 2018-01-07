@@ -1,5 +1,5 @@
 <article (click)="goToPost()">
-    <img class="post-image" [src]="post.thumbnailUrl" />
+    <img *ngIf="post.thumbnailUrl" class="post-image" [src]="post.thumbnailUrl" />
     <div class="post-content">
         <h2>{{post.title}}</h2>
         <p>{{post.content}}</p>
