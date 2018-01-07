@@ -10,17 +10,17 @@ export class FirebaseUrlProvider {
         this.urlCache = new Map<string, string>();
     }
 
-    getUrl(relativePath: string) {
-        if (typeof(relativePath) != 'string')
+    getUrl(firebasePath: string) {
+        if (typeof(firebasePath) != 'string')
             return Promise.resolve(null);
 
-        if (this.urlCache.has(relativePath))
-            return Promise.resolve(this.urlCache.get(relativePath));
+        if (this.urlCache.has(firebasePath))
+            return Promise.resolve(this.urlCache.get(firebasePath));
 
-        const storageRef = this.fb.storage().ref().child(relativePath);
+        const storageRef = this.fb.storage().ref().child(firebasePath);
         return storageRef.getDownloadURL()
             .then(url => {
-                this.urlCache.set(relativePath, url);
+                this.urlCache.set(firebasePath, url);
                 return url;
             }); 
     }
