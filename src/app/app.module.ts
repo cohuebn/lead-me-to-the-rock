@@ -23,6 +23,7 @@ import { PostModelFactory } from './posts/post-model.factory';
 import { FirebaseUrlProvider } from './content/firebase-url.provider';
 import { FirebaseContentProvider } from './content/firebase-content.provider';
 import { SafeHtmlPipe } from './content/safe-html.pipe';
+import { FirebaseSourceTransformer } from './content/firebase-source.transformer';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,7 @@ import { SafeHtmlPipe } from './content/safe-html.pipe';
   ],
   providers: [
     PostService, PostModelFactory, FirebaseUrlProvider,
-    FirebaseContentProvider
+    FirebaseContentProvider, FirebaseSourceTransformer
   ],
   bootstrap: [AppComponent]
 })
