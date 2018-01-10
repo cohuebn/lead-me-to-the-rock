@@ -1,5 +1,6 @@
 @import '../scss/utility';
 @import '../scss/colors';
+@import '../scss/variables';
 
 article {
     margin-bottom: 2rem;
@@ -16,8 +17,12 @@ article {
         flex: 1;
         margin-left: 2rem;
 
+        h2 {
+            margin-top: 0;
+        }
+
         p {
-            height: 5rem;
+            height: 8rem;
             overflow: hidden;
         }
     }
@@ -26,5 +31,26 @@ article {
         $image-width: 15rem;
         width: $image-width;
         height: $image-width;
+    }
+
+    @media screen and (max-width: $mobile-max-width) {
+        .post-content {
+            h2 {
+                margin-top: 0;
+                margin-bottom: .5rem;
+            }
+
+            p {
+                height: 3rem;
+                margin-top: .5rem;
+                margin-bottom: .5rem;
+            }
+        }
+
+        .post-image {
+            $small-image-width: 8rem;
+            width: $small-image-width;
+            height: $small-image-width;
+        }
     }
 }
