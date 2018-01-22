@@ -3,7 +3,7 @@ import { Post } from './post.model';
 import { PostQuery } from './post-query.model';
 import { AngularFireDatabase, AngularFireAction  } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/mergeMap';
+import { mergeMap } from 'rxjs/operators';
 import { PostModelFactory } from './post-model.factory';
 
 @Injectable()
@@ -15,18 +15,20 @@ export class PostService {
     getPosts(query: PostQuery) {
         return this.db.list('/posts')
             .snapshotChanges()
-            .flatMap(actions => {
-                const postPromises = actions.map(c => {
-                    const rawData = { key: c.payload.key, ...c.payload.val() };
-                    return this.postModelFactory.create(rawData);
-                });
-                return Promise.all(postPromises);
-            });
+            .pipe(
+                mergeMap(actions => {
+                    const postPromises = actions.map(c => {
+                        const rawData = { key: c.payload.key, ...c.payload.val() };
+                        return this.postModelFactory.create(rawData);
+                    });
+                    return Promise.all(postPromises);
+                })
+            );
     }
 
     getPost(key: string) {
         return this.db.object(`/posts/${key}`)
             .valueChanges()
-            .flatMap(x => this.postModelFactory.create(x));
+            .mergeMap(x => this.postModelFactory.create(x));
     }
 }
