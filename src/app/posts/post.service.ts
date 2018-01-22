@@ -29,6 +29,8 @@ export class PostService {
     getPost(key: string) {
         return this.db.object(`/posts/${key}`)
             .valueChanges()
-            .mergeMap(x => this.postModelFactory.create(x));
+            .pipe(
+                mergeMap(x => this.postModelFactory.create(x))
+            );
     }
 }
