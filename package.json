@@ -30,7 +30,7 @@
     "firebase": "^4.8.2",
     "firebase-rxjs": "^0.1.2",
     "firebase-rxjs-angular": "^0.1.2",
-    "rxjs": "^5.5.2",
+    "rxjs": "^5.5.0",
     "zone.js": "^0.8.14"
   },
   "devDependencies": {
