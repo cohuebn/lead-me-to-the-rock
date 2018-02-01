@@ -1,20 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { PostService } from '../posts/post.service';
-import { Post } from '../posts/post.model';
+import { PostQuery } from '../posts/post-query.model';
 
 @Component({
     selector: 'section[home]',
     templateUrl: './home.component.html',
 })
 export class HomeComponent implements OnInit {
-    posts: Observable<Post[]>;
+    postQuery: PostQuery;
 
-    constructor(private postService: PostService) {
+    constructor() {
 
     }
 
     ngOnInit() {
-        this.posts = this.postService.getPosts({limit: 5});
+        this.postQuery = {limit: 5};
     }
 }

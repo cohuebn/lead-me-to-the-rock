@@ -5,8 +5,8 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
 import { environment } from '../environments/environment';
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule  } from 'angularfire2/database';
+import { FirebaseRxJSModule } from 'firebase-rxjs-angular';
+import { FirebaseApp } from 'firebase-rxjs';
 
 import { AppComponent } from './app.component';
 import { routes } from './routes';
@@ -18,6 +18,7 @@ import { HomeComponent } from './home/home.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { PostService } from './posts/post.service';
 import { PostPreviewComponent } from './posts/post-preview.component';
+import { PostPreviewsComponent } from './posts/post-previews.component';
 import { PostComponent } from './posts/post.component';
 import { PostModelFactory } from './posts/post-model.factory';
 import { FirebaseUrlProvider } from './content/firebase-url.provider';
@@ -29,15 +30,15 @@ import { FirebaseSourceTransformer } from './content/firebase-source.transformer
   declarations: [
     AppComponent, HeaderComponent, AboutComponent,
     FaithComponent, HomeComponent, WelcomeComponent,
-    PostPreviewComponent, PostComponent, SafeHtmlPipe
+    PostPreviewComponent, PostComponent, SafeHtmlPipe,
+    PostPreviewsComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot(routes),
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFireDatabaseModule
+    FirebaseRxJSModule.primaryApp({ options: environment.firebase })
   ],
   providers: [
     PostService, PostModelFactory, FirebaseUrlProvider,
