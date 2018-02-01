@@ -5,8 +5,8 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
 import { environment } from '../environments/environment';
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule  } from 'angularfire2/database';
+import { FirebaseRxJSModule } from 'firebase-rxjs-angular';
+import { FirebaseApp } from 'firebase-rxjs';
 
 import { AppComponent } from './app.component';
 import { routes } from './routes';
@@ -38,8 +38,7 @@ import { FirebaseSourceTransformer } from './content/firebase-source.transformer
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot(routes),
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFireDatabaseModule
+    FirebaseRxJSModule.primaryApp({ options: environment.firebase })
   ],
   providers: [
     PostService, PostModelFactory, FirebaseUrlProvider,

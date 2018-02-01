@@ -1,24 +1,27 @@
 import { Injectable } from '@angular/core';
 import { Post } from './post.model';
+import { PostsSchema } from './posts.schema';
 import { PostQuery } from './post-query.model';
-import { AngularFireDatabase, AngularFireAction  } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
+import { FirebaseApp, FirebaseDatabase } from 'firebase-rxjs';
 import { mergeMap } from 'rxjs/operators';
 import { PostModelFactory } from './post-model.factory';
 
 @Injectable()
 export class PostService {
-    constructor(private db: AngularFireDatabase, private postModelFactory: PostModelFactory) {
+    private db: FirebaseDatabase<PostsSchema>;
 
+    constructor(private fb: FirebaseApp, private postModelFactory: PostModelFactory) {
+        this.db = fb.database<PostsSchema>();
     }
 
     getPosts(query: PostQuery) {
-        return this.db.list('/posts')
-            .snapshotChanges()
+        return this.db.ref<Post[]>('/posts').onValue().list()
             .pipe(
-                mergeMap(actions => {
-                    const postPromises = actions.map(c => {
-                        const rawData = { key: c.payload.key, ...c.payload.val() };
+                mergeMap(posts => {
+                    const postPromises = posts.map(post => {
+                        const values = post.val as object;
+                        const rawData = { ...values, key: post.key };
                         return this.postModelFactory.create(rawData);
                     });
                     return Promise.all(postPromises);
@@ -27,10 +30,12 @@ export class PostService {
     }
 
     getPost(key: string) {
-        return this.db.object(`/posts/${key}`)
-            .valueChanges()
+        return this.db.ref<Post>(`/posts/${key}`).onValue().val()
             .pipe(
-                mergeMap(x => this.postModelFactory.create(x))
+                mergeMap(post => {
+                    const rawData = { ...post, key };
+                    return this.postModelFactory.create(rawData);
+                })
             );
     }
 }

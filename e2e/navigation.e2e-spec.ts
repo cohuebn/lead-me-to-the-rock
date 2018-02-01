@@ -1,21 +1,13 @@
-import { browser, by, element, ExpectedConditions, $ } from 'protractor';
+import { browser, by, element } from 'protractor';
 
 describe('Navigation', () => {
-    beforeEach(() => {
-        browser.get('/');
-        // browser.waitForAngularEnabled(false);
+    beforeEach(async () => {
+        await browser.get('/');
     });
 
-    it('works! (sanity check)', () => {
-        expect(true).toBe(true);
-    })
-
-    xit('can navigate between pages', () => {
-        browser.wait(ExpectedConditions.presenceOf($('nav ul li a')))
-        const aboutLink = $('nav ul li a');
-        expect(aboutLink.isPresent()).toBe(true);     
-        aboutLink.click();
-        browser.wait(ExpectedConditions.presenceOf($('h2')));
-        expect(element(by.cssContainingText('h2', 'About')).isPresent());
+    it('can navigate between pages', async () => {
+        const aboutLink = await element(by.cssContainingText('nav ul li a', 'About')).click();
+        const aboutHeader = element(by.tagName('h1')); 
+        expect(await aboutHeader.getText()).toEqual('About');
     })
 });
