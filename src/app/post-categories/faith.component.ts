@@ -3,9 +3,10 @@ import { PostQuery } from '../posts/post-query.model';
 
 @Component({
     selector: 'section[faith]',
-    templateUrl: './faith.component.html'
+    templateUrl: '../post-category.component.html'
 })
 export class FaithComponent implements OnInit {
+    heading: string = 'Faith';
     postQuery: PostQuery;
 
     ngOnInit() {

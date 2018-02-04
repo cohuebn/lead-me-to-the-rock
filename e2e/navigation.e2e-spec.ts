@@ -10,6 +10,9 @@ describe('Navigation', () => {
     it('can navigate between pages', async () => {
         await clickNavLinkExpectHeader('About');
         await clickNavLinkExpectHeader('Faith');
+        await clickNavLinkExpectHeader('Finances');
+        await clickNavLinkExpectHeader('Simple Living');
+        await clickNavLinkExpectHeader('Recipes');
 
         await element(by.css('.logo')).click();
         expect(await(header.getText())).toEqual('Latest posts');
