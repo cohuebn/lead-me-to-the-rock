@@ -47,7 +47,7 @@ export class PostService {
             firebaseQuery = firebaseQuery.limitToLast(query.limit);
 
         if (query.category) {
-            firebaseQuery.orderByChild('category').equalTo(query.category);
+            firebaseQuery = firebaseQuery.orderByChild('category').equalTo(query.category);
         }
 
         return firebaseQuery;
