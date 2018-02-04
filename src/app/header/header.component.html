@@ -5,8 +5,8 @@
     <ul [class.visible]="menuVisible" (click)="toggleMenu(false)">
         <li><a [routerLink]="['about']">About</a></li>
         <li><a [routerLink]="['faith']">Faith</a></li>
-        <li><a href="#">Finances</a></li>
-        <li><a href="#">Simple Living</a></li>
-        <li><a href="#">Recipes</a></li>
+        <li><a [routerLink]="['finances']">Finances</a></li>
+        <li><a [routerLink]="['simple-living']">Simple Living</a></li>
+        <li><a [routerLink]="['recipes']">Recipes</a></li>
     </ul>
 </nav>

@@ -13,7 +13,7 @@ import { routes } from './routes';
 import { HeaderComponent } from './header/header.component';
 import { routerNgProbeToken } from '@angular/router/src/router_module';
 import { AboutComponent } from './about/about.component';
-import { FaithComponent } from './faith/faith.component';
+import { FaithComponent, FinancesComponent, SimpleLivingComponent, RecipesComponent } from './post-categories/post-categories.module';
 import { HomeComponent } from './home/home.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { PostService } from './posts/post.service';
@@ -31,7 +31,8 @@ import { FirebaseSourceTransformer } from './content/firebase-source.transformer
     AppComponent, HeaderComponent, AboutComponent,
     FaithComponent, HomeComponent, WelcomeComponent,
     PostPreviewComponent, PostComponent, SafeHtmlPipe,
-    PostPreviewsComponent
+    PostPreviewsComponent, FinancesComponent, SimpleLivingComponent,
+    RecipesComponent
   ],
   imports: [
     BrowserModule,

@@ -4,4 +4,5 @@ export class Post {
     summary: string;
     contentUrl: string;
     thumbnailUrl?: string;
+    category: string;
 }
