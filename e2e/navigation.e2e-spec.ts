@@ -1,13 +1,22 @@
 import { browser, by, element } from 'protractor';
 
 describe('Navigation', () => {
+    const header = element(by.tagName('h1')); 
+    
     beforeEach(async () => {
         await browser.get('/');
     });
 
     it('can navigate between pages', async () => {
-        const aboutLink = await element(by.cssContainingText('nav ul li a', 'About')).click();
-        const aboutHeader = element(by.tagName('h1')); 
-        expect(await aboutHeader.getText()).toEqual('About');
+        await clickNavLinkExpectHeader('About');
+        await clickNavLinkExpectHeader('Faith');
+
+        await element(by.css('.logo')).click();
+        expect(await(header.getText())).toEqual('Latest posts');
     })
+
+    async function clickNavLinkExpectHeader(linkText: string, headerText?: string) {
+        const navLink = await element(by.cssContainingText('nav ul li a', linkText)).click();
+        expect(await header.getText()).toEqual(headerText || linkText);
+    }
 });

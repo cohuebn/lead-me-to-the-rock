@@ -3,7 +3,7 @@ import { Post } from './post.model';
 import { PostsSchema } from './posts.schema';
 import { PostQuery } from './post-query.model';
 import { Observable } from 'rxjs/Observable';
-import { FirebaseApp, FirebaseDatabase } from 'firebase-rxjs';
+import { FirebaseApp, FirebaseDatabase, FirebaseQuery } from 'firebase-rxjs';
 import { mergeMap } from 'rxjs/operators';
 import { PostModelFactory } from './post-model.factory';
 
@@ -16,7 +16,8 @@ export class PostService {
     }
 
     getPosts(query: PostQuery) {
-        return this.db.ref<Post[]>('/posts').onValue().list()
+        return this.buildQuery(query)
+            .onValue().list()
             .pipe(
                 mergeMap(posts => {
                     const postPromises = posts.map(post => {
@@ -37,5 +38,18 @@ export class PostService {
                     return this.postModelFactory.create(rawData);
                 })
             );
+    }
+
+    private buildQuery(query: PostQuery) {
+        let firebaseQuery: FirebaseQuery<{ [postId:string]: Post }> = this.db.ref().child('posts');
+
+        if (query.limit)
+            firebaseQuery = firebaseQuery.limitToLast(query.limit);
+
+        if (query.category) {
+            firebaseQuery.orderByChild('category').equalTo(query.category);
+        }
+
+        return firebaseQuery;
     }
 }

@@ -1,4 +1,4 @@
 export class PostQuery {
-    categories?: string[];
+    category?: string;
     limit?: number;
 }
