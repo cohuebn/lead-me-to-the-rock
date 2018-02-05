@@ -46,4 +46,6 @@
 
 @mixin shadow($color: #888) {
     box-shadow: 1px 1px 3px $color;
+    -moz-box-shadow: 1px 1px 3px $color;
+    -webkit-box-shadow: 1px 1px 3px $color;
 }

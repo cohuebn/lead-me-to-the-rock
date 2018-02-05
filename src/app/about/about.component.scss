@@ -1,0 +1,12 @@
+@import '../scss/utility';
+@import '../scss/colors';
+
+blockquote {
+    color: $light-blue;
+    font-size: 1.2rem;
+    
+    .bible-verse {
+        font-size: 2.5rem;
+        font-family: 'Euphoria Script', Helvetica, Arial, sans-serif;    
+    }
+}
